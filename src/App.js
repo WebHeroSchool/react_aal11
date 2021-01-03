@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 
+
+const flag = true;
+const count = 7;
+
 function App() {
   return (
     <div className="App">
@@ -10,7 +14,18 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <p>
-        Hello World!
+          Hello World!
+        </p>
+        <p>
+          {count},
+          {21},
+          {7+7},
+          {flag && 'FLAG'},
+          {flag ? 'flag is true': 'flag is false'},
+          {undefined},
+          {null},
+          {false},
+          {true}
         </p>
         <a
           className="App-link"
