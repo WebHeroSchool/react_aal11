@@ -16,6 +16,11 @@ function App() {
         <p>
           Hello World!
         </p>
+        <p style={{
+          color: 'red'
+        }}> 
+          Hello World!
+        </p>
         <p>
           {count},
           {21},
