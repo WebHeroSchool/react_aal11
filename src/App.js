@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import {count} from './number.js';
+import {length} from './number.js';
+
 
 function App() {
   return (
@@ -10,7 +13,16 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <p>
-        Hello World!
+          Hello World!
+        </p>
+        <p style={{
+          color: 'red'
+        }}> 
+          Hello World!
+        </p>
+        <p>
+          {'count * length = '} 
+          {count * length}
         </p>
         <a
           className="App-link"
