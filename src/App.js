@@ -22,6 +22,10 @@ function App() {
           Hello World!
         </p>
         <p>
+          {'count * length = '} 
+          {count * length}
+        </p>
+        <p>
           {count},
           {21},
           {7+7},
