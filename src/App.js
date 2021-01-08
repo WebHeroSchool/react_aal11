@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import {count} from './number.js';
+import {length} from './number.js';
 
 
 const flag = true;
