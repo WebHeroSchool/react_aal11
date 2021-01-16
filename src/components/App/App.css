@@ -1,0 +1,9 @@
+.wrap {
+  margin: auto;
+  width: 350px;
+  font-family: cursive;
+}
+
+.wrap__title {
+	font-family: Helvetica;
+}
