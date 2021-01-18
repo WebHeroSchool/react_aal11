@@ -1,10 +1,14 @@
 .wrap {
   margin: auto;
-  width: 350px;
+  width: max-content;  
   font-family: cursive;
+  
 }
 
 .title {
 	font-family: Helvetica;
 }
 
+.body {
+	color: green;
+}
