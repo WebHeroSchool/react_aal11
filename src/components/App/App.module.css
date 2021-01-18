@@ -2,13 +2,10 @@
   margin: auto;
   width: max-content;  
   font-family: cursive;
+  color: #4B0082	;
   
 }
 
 .title {
 	font-family: Helvetica;
-}
-
-.body {
-	color: green;
 }
