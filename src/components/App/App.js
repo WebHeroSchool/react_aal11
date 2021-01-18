@@ -12,11 +12,11 @@ const App = () => {
                 isDone: false
             },
             {
-                value: 'Пройти урок',
+                value: 'Пройти 1ур по react +10стр',
                 isDone: true
             },
             {
-                value: 'Сходить на тренировку',
+                value: 'Сходить на трен-ку в 20:00 ',
                 isDone: false
             }
     ];
