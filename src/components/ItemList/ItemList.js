@@ -6,7 +6,13 @@ import styles from "./ItemList.module.css";
 const ItemList = ({ items, onClickDone }) => (
     <ul className={styles.ul}>
         {items.map(item => <ol className={styles.text} key={item.value}>
-             <Item value={item.value} isDone={item.isDone}  onClickDone={onClickDone} /></ol>
+             <Item 
+            	 value={item.value} 
+            	 isDone={item.isDone}
+            	 id={item.id}
+            	 onClickDone={onClickDone} 
+            	 />
+          </ol>
         )}
     </ul>);
 export default ItemList;
