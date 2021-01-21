@@ -1,10 +1,11 @@
 .wrap {
   margin: auto;
-  width: 350px;
+  width: max-content;  
   font-family: cursive;
+  color: #696969;
+  
 }
 
 .title {
 	font-family: Helvetica;
 }
-

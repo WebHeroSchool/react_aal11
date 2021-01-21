@@ -1,0 +1,10 @@
+
+.text {
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+  }
