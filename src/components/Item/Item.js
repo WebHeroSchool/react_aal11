@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
-import styles from './Item.module.css';
+import styles from "./Item.module.css";
 
 const Item = ({value, isDone, onClickDone, id, onClickDelete}) => (<div className={
     classnames({
@@ -15,10 +15,10 @@ const Item = ({value, isDone, onClickDone, id, onClickDelete}) => (<div classNam
         color="primary"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
         onClick={() => onClickDone(id)}
-        DeleteIcon onClick={() => onClickDelete(id)}
+       
     />
     {value}
-    <DeleteIcon color="primary" className={styles.delete}/>
+    <DeleteIcon color="primary" onClick={() => onClickDelete(id)} className={styles.delete}/>
 </div>);
 
 export default Item;
