@@ -3,7 +3,7 @@ import Item from '../Item/Item'
 import styles from "./ItemList.module.css";
 
 
-const ItemList = ({ items, onClickDone }) => (
+const ItemList = ({ items, onClickDone, onClickDelete }) => (
     <ul className={styles.ul}>
         {items.map(item => <ol className={styles.text} key={item.value}>
              <Item 
@@ -11,6 +11,7 @@ const ItemList = ({ items, onClickDone }) => (
             	 isDone={item.isDone}
             	 id={item.id}
             	 onClickDone={onClickDone} 
+            	 onClickDelete={onClickDelete}
             	 />
           </ol>
         )}
