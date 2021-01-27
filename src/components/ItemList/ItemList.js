@@ -1,20 +1,33 @@
 import React from 'react';
-import Item from '../Item/Item'
-import styles from "./ItemList.module.css";
+import Item from '../Item/Item';
+
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
 
 
-const ItemList = ({ items, onClickDone, onClickDelete }) => (
-    <ul className={styles.ul}>
-        {items.map(item => <ol className={styles.text} key={item.id}>
-             <Item 
-            	 value={item.value} 
-            	 isDone={item.isDone}
-            	 id={item.id}
-            	 onClickDone={onClickDone} 
-            	 onClickDelete={onClickDelete}
-                 
-            	 />
-          </ol>
-        )}
-    </ul>);
-export default ItemList;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
+  },
+}));
+
+export default function ItemList( {items, onClickDone, onClickDelete} ) {
+  const classes = useStyles();
+
+ return (
+    <List className={classes.root}>
+      {items.map((item) => {
+        return (
+          <Item
+            value={item.value}
+            isDone={item.isDone}
+            id={item.id}
+            onClickDone={onClickDone}
+            onClickDelete={onClickDelete}
+          />
+        );
+      })}
+    </List>
+  );
+}

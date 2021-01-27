@@ -1,39 +1,82 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
 import styles from './InputItem.module.css';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
-
 class InputItem extends React.Component {
-		state = {
-					inputValue: ''
-			}	;
-		render () {
-				const { onClickAdd } = this.props;
+  state = {
+    inputValue: '',
+    helperText: '',
+    isError: false
+  };
 
-		return (<Grid>
-		    <TextField
-		        id="standard-basic"
-		        label="Добавить задание"
-		        className={styles.root}
-		        value={this.state.inputValue}
-		        InputProps={{className: styles.root}}
-		        onChange={event => this.setState({ inputValue: event.target.value })} 
-		    />
-		    <Button
-		        variant="contained"
-		        color='primary'
-		        fullWidth		        
-		        onClick={onClickAdd}
-		    >
-		       	Добавить
-		    </Button>
-	   </Grid>);
-				
-			}
-	}
+  onChangeInputItem = (event) => {
+
+    this.setState({
+      inputValue: event.target.value,
+      isError: (this.state.isError && this.valueCheck(this.state.inputValue)),
+      helperText: !(this.state.isError && this.valueCheck(this.state.inputValue) ? '' : 'Введите текст')
+    })
+  };
+
+  valueCheck = (value) => {
+    if (value === '') {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  onButtonClick = () => {
+
+    if (!this.valueCheck(this.state.inputValue)) {
+      this.setState({
+          helperText: 'Введите текст',
+          isError: true
+      });
+      
+    } else {
+      this.setState({
+        inputValue: ''
+      });
+
+      this.props.onClickAdd(this.state.inputValue);
+    }
+    
+  }
+
+  render() {
+
+    return (
+      <div className={styles.field}>
+        <form
+          onSubmit={event => event.preventDefault()}
+          autoComplete="off"
+        >
+          <TextField
+            id="standard-basic"
+            label="Добавить задание"
+            
+            value={this.state.inputValue}
+            onChange={(event) => this.onChangeInputItem(event)}
+            helperText={this.state.helperText}
+            error={this.state.isError}
+          />
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={() => this.onButtonClick()}
+            className={styles.btn}
+          >Добавить</Button>
+        </form>
+      </div>
+    );
+  }
+}
+
+
+
 
 
 export default InputItem;
