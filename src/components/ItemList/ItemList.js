@@ -32,10 +32,9 @@ export default function ItemList( {items, onClickDone, onClickDelete} ) {
   );
 };
 
-  ItemList.propTypes = {
-    value: PropTypes.string.isRequired,
-    isDone: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
+ItemList.propTypes = {
+    items: PropTypes.array.isRequired,
     onClickDone: PropTypes.func.isRequired,
     onClickDelete: PropTypes.func.isRequired
-  }
+}
+
