@@ -1,6 +1,6 @@
 import React from 'react';
 import Item from '../Item/Item';
-
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 
@@ -32,12 +32,10 @@ export default function ItemList( {items, onClickDone, onClickDelete} ) {
   );
 };
 
-  ItemList.defaultProps = {
-    items: [
-      {
-        value: 'Пусто',
-        isDone: false,
-        id: 0
-      }
-    ]
+  ItemList.propTypes = {
+    value: PropTypes.string.isRequired,
+    isDone: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+    onClickDone: PropTypes.func.isRequired,
+    onClickDelete: PropTypes.func.isRequired
   }
