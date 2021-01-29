@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import styles from "./Footer.module.css";
 
+
 const Footer = ({count}) => (<div className={styles.wrap}>
     <p className={styles.text}>Осталось выполнить: {count}</p>
     <div className={styles.button}>
@@ -17,4 +18,9 @@ const Footer = ({count}) => (<div className={styles.wrap}>
     </div>
 </div>);
 
+Footer.defaultProps = {
+
+    count: 0
+
+};
 export default Footer;
