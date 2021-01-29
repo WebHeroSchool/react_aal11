@@ -1,6 +1,6 @@
 import React from 'react';
 import Item from '../Item/Item';
-
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 
@@ -30,4 +30,11 @@ export default function ItemList( {items, onClickDone, onClickDelete} ) {
       })}
     </List>
   );
+};
+
+ItemList.propTypes = {
+    items: PropTypes.array.isRequired,
+    onClickDone: PropTypes.func.isRequired,
+    onClickDelete: PropTypes.func.isRequired
 }
+
