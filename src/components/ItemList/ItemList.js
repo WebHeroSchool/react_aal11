@@ -31,7 +31,15 @@ export default function ItemList( {items, onClickDone, onClickDelete} ) {
     </List>
   );
 };
-
+  ItemList.defaultProps = {
+    items: [
+      {
+        value: 'Пусто',
+        isDone: false,
+        id: 0
+      }
+    ]
+  }
 ItemList.propTypes = {
     items: PropTypes.array.isRequired,
     onClickDone: PropTypes.func.isRequired,
