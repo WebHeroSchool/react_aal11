@@ -18,6 +18,10 @@ const Footer = ({count}) => (<div className={styles.wrap}>
     </div>
 </div>);
 
+Footer.defaultProps = {
+
+    count: 0
+}
 Footer.propTypes = {
   count: PropTypes.number.isRequired
 }
