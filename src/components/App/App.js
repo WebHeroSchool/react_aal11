@@ -8,17 +8,17 @@ class App extends React.Component {
     state = {
         items: [
           {
-              value: 'Написать новое приложение',
+              value: 'Написать  приложение',
               isDone: false,
               id: 1
           },
           {
-              value: 'Пройти 1ур по react +10стр',
+              value: 'Пройти 1ур по react',
               isDone: true,
               id: 2
           },
           {
-              value: 'Сходить на трен-ку в 20:00 ',
+              value: 'Сходить на трен-ку',
               isDone: false,
               id: 3
           }
