@@ -2,9 +2,11 @@
 .text {
     font-weight: bolder;
     font-style: italic;
+    margin-left: 5px;
 }
 
 .button {
     display: flex;
     justify-content: space-between;
+    
   }
