@@ -62,6 +62,7 @@ class InputItem extends React.Component {
             onChange={(event) => this.onChangeInputItem(event)}
             helperText={this.state.helperText}
             error={this.state.isError}
+            className={styles.text_btn}
           />
           <Button
             variant='contained'

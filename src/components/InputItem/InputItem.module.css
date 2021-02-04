@@ -1,3 +1,16 @@
 .root {
-    width: 100%;
+  width: 100%;
+}
+
+.field {
+  margin-left: 18px;
+}
+.btn {
+	display: grid;
+  grid-template-areas: 'sidebar ... content content';
+  width: 100%;
+}
+
+.text_btn {
+	width: 100%;
 }
