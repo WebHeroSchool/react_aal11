@@ -1,3 +1,51 @@
-.wrap {
-    padding: 10px;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px 0px 10px;
 }
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.userInfo__header {
+    margin-top: 0;
+    text-align: center;
+}
+
+.userInfo__header a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.avatar {
+    overflow: hidden;
+    border-radius: 10%;
+    width: 30%;
+    margin-right: 10px;
+    float: left;
+}
+
+.userInfo {
+    display: block;
+}
+
+.repoList {
+    padding: 0px 0px 0px 20px;
+}
+
+.repoItem a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+a:hover {
+    color: darkviolet;
+}
+
+.errorText {
+    color: #da2d2d;
+    text-align: center;
+} 
