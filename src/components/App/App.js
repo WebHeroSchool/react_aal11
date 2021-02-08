@@ -1,5 +1,5 @@
 import React from "react";
-import {HashRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
