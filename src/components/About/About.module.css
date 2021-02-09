@@ -16,7 +16,7 @@
 
 .userInfo__header a {
     text-decoration: none;
-    color: #ffffff;
+    color: black;
 }
 
 .avatar {
@@ -29,15 +29,17 @@
 
 .userInfo {
     display: block;
+
 }
 
 .repoList {
     padding: 0px 0px 0px 20px;
+    
 }
 
 .repoItem a {
-    color: #ffffff;
-    text-decoration: none;
+    color: black;
+
     font-size: 20px;
 }
 
@@ -46,6 +48,6 @@ a:hover {
 }
 
 .errorText {
-    color: #da2d2d;
+    color: black;
     text-align: center;
 } 
