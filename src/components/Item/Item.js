@@ -1,58 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListItem from '@material-ui/core/ListItem';
-//import ListItemIcon from '@material-ui/core/ListItemIcon';
-
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import classnames from "classnames";
 import styles from './Item.module.css';
 
 
 class Item extends React.Component {
-  componentDidMount() {
-    this.timerID = setInterval(() => console.log('interval'), 1000);
-  };
+    state = {
+        task: this.props.task
+    };
 
- // componentDidUpdate() {
- //   console.log('componentDidUpdate');
- // };
-
-  componentWillUnmount() {
-     clearInterval(this.timerID);
-  }
-
+    onChangeTask = e => {
+        this.setState ({
+            task: e.currentTarget.value
+        });
+        this.props.onChangeItem(this.props.id, e.currentTarget.value);
+    };
 
   render() {
-    const { value, isDone, onClickDone, id, onClickDelete } = this.props;
+    const { id, disabled, isDone } = this.props;
 
     return (
-      <ListItem>
-        <Checkbox
-          checked={isDone}
-          tabIndex={-1}
-          onClick={() => onClickDone(id)}
-          color="primary"
-        />
-        <ListItemText primary={value} classes={{
-          root: isDone && styles.done
-        }} />
-        <ListItemSecondaryAction>
-          <IconButton aria-label="delete" color="primary">
-            <DeleteIcon onClick={() => onClickDelete(id)}/>
-          </IconButton>
-        </ListItemSecondaryAction>
-      </ListItem>
-    );
-  }
+            <input
+                type='text'
+                className={
+                    classnames({
+                        [styles.item]: true,
+                        [styles.done]: isDone,
+                        [styles.edit_mode]: !disabled && !isDone
+                    })}
+                value={this.state.task}
+                id={id}
+                disabled={disabled}
+                onChange={this.onChangeTask}
+            />);
+    }
 }
-
+       //color="primary"
 
 Item.propTypes = {
   isDone: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired
+  task: PropTypes.oneOfType([
+        PropTypes.string.isRequired,
+        PropTypes.number.isRequired,
+        PropTypes.symbol.isRequired
+  ])
 }
 
 export default Item;

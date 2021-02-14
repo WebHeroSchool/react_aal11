@@ -2,58 +2,82 @@ import React from "react";
 import { Octokit } from '@octokit/rest';
 import styles from "./About.module.css";
 import { LinearProgress } from '@material-ui/core';
-
+import RepoList from "../RepoList/RepoList";
+import Card from "@material-ui/core/Card";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const octokit = new Octokit();
 
 class About extends React.Component {
 
     state = {
+        username: 'AntonovaAL',
         isLoading: true,
         repoList: [],
         errorText: 'Возникла ошибка при получении данных',
         isError: false,
-        userData: {}
+        userData: {},
+        firstRepo: 0,
+        lastRepo: 5
     };
 
     componentDidMount() {
         octokit.repos.listForUser({
-            username: 'AntonovaAL'
+            username: this.state.username
         })
             .then(({ data }) => {
                 this.setState({
-                    repoList: data
+                    repoList: data,
+                    isLoading: false
                 });
             })
             .catch(() => {
                 this.setState({
-                    isError: true
-                })
-            })
-            .finally(() => {
-                this.setState({
-                    isLoading: false
+                    isLoading: false,
+                    isError: true,
+                    //errorText: err
                 })
             });
+ //           .finally(() => {
+   //             this.setState({
+     //               isLoading: false
+       //         })
+        //    });
 
         octokit.users.getByUsername({
-            username: 'AntonovaAL'
+            username: this.state.username
         })
-            .then((user) => {
+            .then(({data}) => {
                 this.setState({
-                    userData: user.data
+                   userData: data,
+                   isLoading: false,
                 })
             })
-            .catch(() => {
+            .catch(err => {
                 this.setState({
-                    isError: true
-                })
-            })
-            .finally(() => {
-                this.setState({
-                    isLoading: false
+                    isLoading: false,
+                    isError: true,
+                    errorText: err
                 })
             });
+           // .finally(() => {
+             //   this.setState({
+               //     isLoading: false
+               // })
+           // });
+    };
+    onClickNext = () => {
+        this.setState({
+            firstRepo: this.state.firstRepo + 5,
+            lastRepo: this.state.lastRepo + 5
+        });
+    };
+
+    onClickBack = () => {
+        this.setState({
+            firstRepo: this.state.firstRepo - 5,
+            lastRepo: this.state.lastRepo - 5
+        });
     };
 
     render() {
@@ -68,25 +92,52 @@ class About extends React.Component {
                     </h1>
                         <p>
                             <img className={styles.avatar} src={userData.avatar_url} alt='Фото профиля' />
-                            {userData.bio ? userData.bio : 'Антонова Анастасия Леонидовна'}
+                            <div>
+                                <p className={styles.avatar__title}> {userData.name} </p>
+                                <p className={styles.avatar__subtitle}> {userData.bio} </p>
+                            </div>
                         </p>
                     </div>
+                    <Card>
+                        <div className={styles.repos}>
+                            {isLoading ?
+                                <div>
+                                    <h3> Список репозиториев на github.com </h3>
+                                    <CircularProgress/>
+                                </div> :
+                                <div>
+                                    {isError ?
+                                        <div>
+                                            <h3> Что-то пошло не так. Невозможно отобразить список репозиториев :( </h3>
+                                        </div> :
+                                        <div>
+                                            {repoList.length === 0 ?
+                                                <div>
+                                                    <h3> Список репозиториев на github.com. К сожалению у Вас нет ни одного репозитория... </h3>
+                                                </div> :
+                                                <RepoList
+                                                    repoList={repoList}
+                                                    infoOfUser={userData}
+                                                    onClickNext={this.onClickNext}
+                                                    onClickBack={this.onClickBack}
+                                                    firstRepo={this.state.firstRepo}
+                                                    lastRepo={this.state.lastRepo}
+                                                />
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                </Card>
+            </div>
+        );
 
-                    <div>
-                        <h1>{isLoading ? <LinearProgress /> : 'Мои репозитории:'}</h1>
-                        {!isLoading && <ol className={styles.repoList}>
-                            {repoList.map(item => (
-                                <li
-                                    className={styles.repoItem}
-                                    key={item.id}
-                                >
-                                    <a href={item.html_url} target="__blank">{item.name}</a>
-                                </li>
-                            ))}
-                        </ol>}
-                    </div>
-                </div>
-            )
+
+
+
+
+
         else
             return (
                 <h2 className={styles.errorText}>

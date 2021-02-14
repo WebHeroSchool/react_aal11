@@ -1,12 +1,98 @@
+.footer_menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2% 0 2% 2%;
+}
 
-.text {
-    font-weight: bolder;
-    font-style: italic;
+.task_count {
+    color: #356EFF;
     margin-left: 5px;
+    font: normal bold 10px/14px Roboto;
 }
 
 .button {
-    display: flex;
-    justify-content: space-between;
-    
-  }
+    text-align: center;
+    padding: 1px 6px;
+    height: 50px;
+    background: none;
+    border: none;
+    outline: none;
+    margin: 10px 0 0 25px;
+    font: normal normal 10px/14px 'Pacifico', cursive;
+}
+
+.button:hover {
+    cursor: pointer;
+    background: cornsilk;
+    border-radius: 10px;
+    transition: 0.7s;
+}
+
+.selected {
+    background: #7670ee;
+    border-radius: 10px;
+    color: #ffefe4;
+}
+
+.selected:hover {
+    background: #7670ee;
+    opacity: 0.8;
+}
+
+.selected .task_count {
+    color: #ffefe4;
+}
+
+@media (min-width: 320px) and (max-width: 409px) {
+    .footer_menu {
+        display: inline;
+        margin: 2% 0 2% 2%;
+    }
+
+    .task_count {
+        margin-left: 3px;
+        font-size: 15px;
+    }
+
+    .button {
+        padding: 0;
+        margin: 10px 0 0 13px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 410px) and (max-width: 767px) {
+    .footer_menu {
+        display: inline;
+        margin: 2% 0 2% 2%;
+    }
+
+    .task_count {
+        margin-left: 5px;
+        font-size: 10px;
+    }
+
+    .button {
+        padding-left: 7px;
+        margin: 10px 0 0 13px;
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .footer_menu {
+        margin: 2% 0 2% 2%;
+    }
+
+    .task_count {
+        margin-left: 5px;
+        font-size: 18px;
+    }
+
+    .button {
+        padding-left: 5px;
+        margin: 13px 0 0 0;
+        font-size: 22px;
+    }
+}

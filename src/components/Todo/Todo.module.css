@@ -1,17 +1,110 @@
-.wrap {
-    margin: auto;
-    width: 100%;
-    font-family: cursive;
-    color: #696969;
-
+*{
+    margin: 0;
+    padding: 0;
 }
 
-
-.title {
-    color: DarkGray;
-    margin-left: 15px;
-    font-family: Helvetica;
+/* TaskTodo styles*/
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid darkgrey;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px dimgray;
+    height: 100%;
+    margin: 0 auto;
 }
 
+.todo_title {
+    margin-top: 12px;
+    padding-left: 3%;
+    width: 37%;
+    font: normal normal 26px/16px cursive;
+}
+
+/*Styles for Itemlist block*/
+.tasks_item_list {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    margin: 2% auto;
+    width: 95%;
+}
+
+/*Styles for footer block */
+.footer {
+    margin-right: 5%;
+}
+
+@media (min-width: 320px) and (max-width: 409px) {
+    /* TaskTodo styles*/
+    .todo_title {
+        width: 80%;
+        margin: 2% 0 2% 2%;
+    }
+
+    .container {
+        width: 95%;
+        height: 75vh;
+        box-shadow: 5px 5px 6px dimgray;
+    }
 
 
+    /*Styles for Itemlist block*/
+    .tasks_item_list {
+        width: 100%;
+        height: 50vh;
+    }
+
+    /*Styles for footer block */
+    .footer {
+        width: 100%;
+        margin-right: 5%;
+    }
+}
+
+@media (min-width: 410px) and (max-width: 767px) {
+    /* TaskTodo styles*/
+    .container {
+        width: 95%;
+        height: 75vh;
+        box-shadow: 5px 5px 6px dimgray;
+    }
+
+    /*Styles for Itemlist block*/
+    .tasks_item_list {
+        width: 100%;
+        height: 50vh;
+    }
+
+    /*Styles for footer block */
+    .footer {
+        width: 100%;
+        margin-right: 5%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* TaskTodo styles*/
+    .todo_title {
+        width: 35%;
+        margin: 2% 0 1% 0;
+    }
+
+    .container {
+        width: 95%;
+        height: 65vh;
+    }
+
+    /*Styles for Itemlist block*/
+    .tasks_item_list {
+        width: 100%;
+        height: 50vh;
+    }
+
+    /*Styles for footer block */
+    .footer {
+        width: 100%;
+        margin-right: 5%;
+    }
+}
