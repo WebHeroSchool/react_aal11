@@ -19,7 +19,7 @@
     margin-top: 12px;
     padding-left: 3%;
     width: 37%;
-    font: normal normal 26px/16px cursive;
+    font: normal normal 20px/16px cursive;
 }
 
 /*Styles for Itemlist block*/
@@ -89,6 +89,7 @@
     .todo_title {
         width: 35%;
         margin: 2% 0 1% 0;
+        
     }
 
     .container {
