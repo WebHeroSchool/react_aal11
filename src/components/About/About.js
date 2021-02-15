@@ -38,11 +38,6 @@ class About extends React.Component {
                     //errorText: err
                 })
             });
- //           .finally(() => {
-   //             this.setState({
-     //               isLoading: false
-       //         })
-        //    });
 
         octokit.users.getByUsername({
             username: this.state.username
@@ -60,11 +55,7 @@ class About extends React.Component {
                     errorText: err
                 })
             });
-           // .finally(() => {
-             //   this.setState({
-               //     isLoading: false
-               // })
-           // });
+
     };
     onClickNext = () => {
         this.setState({
@@ -132,11 +123,6 @@ class About extends React.Component {
                 </Card>
             </div>
         );
-
-
-
-
-
 
         else
             return (

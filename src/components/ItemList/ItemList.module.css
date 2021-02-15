@@ -2,26 +2,27 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: auto;
+    width: 95%;
+
 }
 
 .picture {
     display: flex;
     align-items: center;
-    margin-top: 2%;
+    margin-top: 5%;
     background: url(./img/empty_picture.png) no-repeat;
-    width: 295px;
-    height: 280px;
+    width: 260px;
+    height: 180px;
 }
 
 .empty_article {
     margin: 10% 0 2% 0;
-    font-size: 20px;
+    font-size: 15px;
     color: #356EFF;
 }
 
 .empty_sub_article {
-    font-size: 20px;
+    font-size: 15px;
     color: #356EFF;
 }
 
@@ -86,22 +87,23 @@
         width: 100%;
     }
     .task_list_item {
-        height: 30px;
+        height: 60px;
     }
 
     .picture {
-        margin: 5% 0 0 5%;
+        margin: 5% 0 0 1%;
         width: 260px;
         height: 180px;
     }
 
     .empty_article {
         margin: 5% 0 2% 0;
-        font-size: 18px;
+        font-size: 12px;
+
     }
 
     .empty_sub_article {
-        font-size: 15px;
+        font-size: 12px;
     }
 
     .but_edit, .edit_mode_on, .but_delete {
@@ -115,7 +117,7 @@
         width: 100%;
     }
     .task_list_item {
-        height: 30px;
+        height: 40px;
     }
 
     .picture {
@@ -126,11 +128,11 @@
 
     .empty_article {
         margin: 5% 0 2% 0;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     .empty_sub_article {
-        font-size: 17px;
+        font-size: 12px;
     }
 
     .but_edit, .edit_mode_on, .but_delete {
@@ -144,7 +146,7 @@
         width: 100%;
     }
     .task_list_item {
-        height: 50px;
+        height: 90px;
     }
 
     .picture {
@@ -155,7 +157,7 @@
 
     .empty_article {
         margin: 5% 0 2% 0;
-        font-size: 25px;
+        font-size: 15px;
     }
 
     .empty_sub_article {
