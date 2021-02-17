@@ -1,7 +1,7 @@
 import React from "react";
 import { Octokit } from '@octokit/rest';
 import styles from "./About.module.css";
-import { LinearProgress } from '@material-ui/core';
+//import { LinearProgress } from '@material-ui/core';
 import RepoList from "../RepoList/RepoList";
 import Card from "@material-ui/core/Card";
 import CircularProgress from "@material-ui/core/CircularProgress";
