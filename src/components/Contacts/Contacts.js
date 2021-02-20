@@ -3,6 +3,7 @@ import styles from "./Contacts.module.css";
 import telegram from "./img/telegram.svg";
 import instagram from "./img/instagram.svg";
 import phone from "./img/phone.svg";
+import githubicon from "./img/github.svg";
 
 
 const Contacts = () => {
@@ -17,6 +18,10 @@ const Contacts = () => {
                 <div className={styles.item}>
                     <img src={instagram} alt="instagram" className={styles.icon} />
                     <a className={styles.links} href='https://www.instagram.com/antonova__1147'>Instagram</a>
+                </div>
+                <div className={styles.item}>
+                    <img src={githubicon} alt="github" className={styles.icon} />
+                    <a className={styles.links} href='https://github.com/AntonovaAL'>GitHub</a>
                 </div>
                 <div className={styles.item}>
                     <img src={phone} alt="tel" className={styles.icon} />

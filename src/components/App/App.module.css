@@ -53,6 +53,12 @@
   outline: none;
 }
 
+
+.logo_img {
+  width: 90px;
+  margin-bottom: 20px;  
+}
+
 @media (max-width: 668px) {
     .wrap {
       flex-direction: column;
@@ -64,7 +70,10 @@
       justify-content: space-around;
 
     }
-
+   .logo_img {
+     margin-left: 0; 
+     width: 15%;
+    }
     .sidebar {
       width: 500px;
       margin: auto;

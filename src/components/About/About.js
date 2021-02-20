@@ -1,29 +1,50 @@
 import React from "react";
 import { Octokit } from '@octokit/rest';
 import styles from "./About.module.css";
-//import { LinearProgress } from '@material-ui/core';
 import RepoList from "../RepoList/RepoList";
-import Card from "@material-ui/core/Card";
+import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from "@material-ui/core/CircularProgress";
+import classnames from 'classnames';
+import fork from '../About/Fork.svg';
+import star from '../About/star.svg';
 
 const octokit = new Octokit();
 
 class About extends React.Component {
 
     state = {
-        username: 'AntonovaAL',
         isLoading: true,
         repoList: [],
         errorText: 'Возникла ошибка при получении данных',
+       bio: '',
+        name: '',
         isError: false,
-        userData: {},
+        errorValue: '',
+        avatar: '',
+        language: '',
+        updated: '',
         firstRepo: 0,
-        lastRepo: 5
+        lastRepo:1
+    };
+
+
+    lastPage = () => {
+        this.setState({
+            firstRepo: this.state.firstRepo - 1,
+            lastRepo: this.state.lastRepo - 1,
+        });
+    };
+
+    nextPage = () => {
+        this.setState({
+            firstRepo: this.state.firstRepo + 1,
+            lastRepo: this.state.lastRepo + 1,
+        });
     };
 
     componentDidMount() {
         octokit.repos.listForUser({
-            username: this.state.username
+            username: 'AntonovaAL'
         })
             .then(({ data }) => {
                 this.setState({
@@ -31,107 +52,99 @@ class About extends React.Component {
                     isLoading: false
                 });
             })
-            .catch(() => {
+            .catch(e => {
                 this.setState({
                     isLoading: false,
                     isError: true,
-                    //errorText: err
+                    errorValue: e.name
                 })
             });
 
         octokit.users.getByUsername({
-            username: this.state.username
+            username: 'AntonovaAL'
         })
             .then(({data}) => {
                 this.setState({
-                   userData: data,
-                   isLoading: false,
+                   bio: data.bio,
+                  name: data.name,
+                  avatar: data.avatar_url,
+                  profile: data.html_url
                 })
             })
-            .catch(err => {
+            .catch(e => {
                 this.setState({
                     isLoading: false,
                     isError: true,
-                    errorText: err
+                    errorValue: e.name
                 })
             });
 
     };
-    onClickNext = () => {
-        this.setState({
-            firstRepo: this.state.firstRepo + 5,
-            lastRepo: this.state.lastRepo + 5
-        });
-    };
 
-    onClickBack = () => {
-        this.setState({
-            firstRepo: this.state.firstRepo - 5,
-            lastRepo: this.state.lastRepo - 5
-        });
-    };
 
     render() {
-        const { isLoading, repoList, userData, isError, errorText } = this.state;
-
-        if (!isError)
+        const { isLoading, repoList, name, bio, isError, errorValue, avatar, profile, firstRepo, lastRepo } = this.state;
+        const repoListPage = repoList.slice(firstRepo,lastRepo);
+       
             return (
-                <div className={styles.wrapper}>
-                    <div className={styles.userInfo}>
-                        <h1 className={styles.userInfo__header}>
-                            {userData.name} (<a href={userData.html_url} target="__blank">{userData.login}</a>)
-                    </h1>
-                        <p>
-                            <img className={styles.avatar} src={userData.avatar_url} alt='Фото профиля' />
-                            <div>
-                                <p className={styles.avatar__title}> {userData.name} </p>
-                                <p className={styles.avatar__subtitle}> {userData.bio} </p>
-                            </div>
-                        </p>
-                    </div>
-                    <Card>
-                        <div className={styles.repos}>
-                            {isLoading ?
-                                <div>
-                                    <h3> Список репозиториев на github.com </h3>
-                                    <CircularProgress/>
-                                </div> :
-                                <div>
-                                    {isError ?
-                                        <div>
-                                            <h3> Что-то пошло не так. Невозможно отобразить список репозиториев :( </h3>
-                                        </div> :
-                                        <div>
-                                            {repoList.length === 0 ?
-                                                <div>
-                                                    <h3> Список репозиториев на github.com. К сожалению у Вас нет ни одного репозитория... </h3>
-                                                </div> :
-                                                <RepoList
-                                                    repoList={repoList}
-                                                    infoOfUser={userData}
-                                                    onClickNext={this.onClickNext}
-                                                    onClickBack={this.onClickBack}
-                                                    firstRepo={this.state.firstRepo}
-                                                    lastRepo={this.state.lastRepo}
-                                                />
-                                            }
-                                        </div>
-                                    }
-                                </div>
-                            }
-                        </div>
-                </Card>
+                <div> {!isError ?
+                <CardContent>
+                <div className={styles.about_wrap}>
+                    <div className={styles.about_avatar}> {isLoading ? <CircularProgress /> : <img className={styles.avatar_img} src= {avatar}  alt=""></img>} </div>
+                <div className={styles.about_me}>
+                        <h1> {isLoading ? <CircularProgress /> : name} </h1>
+                    <h2> {isLoading ? <CircularProgress /> : bio} </h2>
+                    <a href={profile}>{'Profile at Githab'}</a>
+                </div>
             </div>
+                <h2> { isLoading ? <CircularProgress /> : 'My repositories'}</h2>
+                {!isLoading &&<ol className={styles.repo}>{repoListPage.map(repo => (<li key = {repo.id}>
+                        <a href={repo.html_url}>{repo.name}</a>
+                        <div className={styles.repo_info}>
+                            <span className={classnames({
+                                [styles.language]: true,
+                                [styles.html]: repo.language === 'HTML',
+                                [styles.css]: repo.language === 'CSS',
+                                [styles.js]: repo.language === 'JavaScript'
+                            })}>
+                               {repo.language}
+                            </span>
+                            <span className={styles.stargazers}>
+                                <img className={styles.star_img} src={star}  alt="" />
+                                {repo.stargazers_count}
+                            </span>
+                            <span className={styles.fork}>
+                                <img className={styles.fork_img} src={fork}  alt="" />
+                                {repo.forks_count}    
+                            </span>
+                            <span className={styles.updated}>
+                                {'updated '}
+                                {new Date(repo.updated_at).toLocaleString('en-US',{
+                                day: 'numeric',
+                                month: 'short',
+                                year: 'numeric',})}
+                            </span>
+                        </div>
+                    </li>))}
+                </ol>}
+                <div className={styles.pagination}>
+                    <button className={styles.pagination_button}
+                        onClick={this.lastPage}
+                        disabled={firstRepo < 1}
+                    >
+                    Back
+                    </button>
+                    <button className={styles.pagination_button}
+                        onClick={this.nextPage}
+                        disabled={repoList.length < lastRepo}
+                    >
+                    Forward
+                    </button>
+                </div>
+            </CardContent> 
+            : errorValue} </div>       
         );
-
-        else
-            return (
-                <h2 className={styles.errorText}>
-                    {errorText}...
-                </h2>
-            )
-    };
-};
-
+    }    
+}
 
 export default About;
