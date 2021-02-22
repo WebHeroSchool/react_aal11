@@ -37,7 +37,7 @@
   grid-area: content;
 }
 
-.sidebar {
+.board {
   width: 20%;
   padding: 5px;
   border-radius: 5px;
@@ -74,7 +74,7 @@
      margin-left: 0; 
      width: 15%;
     }
-    .sidebar {
+    .board {
       width: 500px;
       margin: auto;
       padding: 0;
@@ -90,7 +90,7 @@
     }
 
     .link {
-      padding-left: 50px;
+      padding-left: 20px;
       display: -webkit-inline-flex;
       display: inline-flex; 
     }
@@ -98,7 +98,7 @@
 
 @media (max-width: 505px) {
     .wrap,
-    .sidebar,
+    .board,
     .content {
         width: 400px;
     }
@@ -112,7 +112,7 @@
 
 @media (max-width: 410px) {
     .wrap,
-    .sidebar,
+    .board,
     .content {
         width: 300px;
     }
@@ -122,5 +122,3 @@
       display: inline-flex; 
     }
 }
-
-

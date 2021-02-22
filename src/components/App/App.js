@@ -13,7 +13,7 @@ const App = () => (
     <Router>
       <div className={styles.wrap}>
       <Card className={styles.board}>
-          <MenuList>
+          <MenuList className={styles.menu}>
               <img className={styles.logo_img} src={logo}  alt="" />
               <Link className={styles.link} to='/'><MenuItem>Обо мне</MenuItem></Link>
               <Link className={styles.link} to='/todo'><MenuItem>Дела</MenuItem></Link>
