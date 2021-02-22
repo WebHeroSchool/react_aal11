@@ -22,7 +22,7 @@ const App = () => (
           </MenuList>
       </Card>
       <Card className={styles.content}>
-          <Route path='/' exact component={About} />
+           <Route path='/' exact component={About} />
            <Route path='/todo' component={Todo} />
            <Route path='/contacts' component={Contacts} />
       </Card>
