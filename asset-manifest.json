@@ -1,26 +1,29 @@
 {
   "files": {
-    "main.css": "/react_aal11/static/css/main.a4dee75c.chunk.css",
-    "main.js": "/react_aal11/static/js/main.de0df995.chunk.js",
-    "main.js.map": "/react_aal11/static/js/main.de0df995.chunk.js.map",
+    "main.css": "/react_aal11/static/css/main.68b5d74a.chunk.css",
+    "main.js": "/react_aal11/static/js/main.d4a89b80.chunk.js",
+    "main.js.map": "/react_aal11/static/js/main.d4a89b80.chunk.js.map",
     "runtime-main.js": "/react_aal11/static/js/runtime-main.15faa180.js",
     "runtime-main.js.map": "/react_aal11/static/js/runtime-main.15faa180.js.map",
-    "static/js/2.e3cf45c0.chunk.js": "/react_aal11/static/js/2.e3cf45c0.chunk.js",
-    "static/js/2.e3cf45c0.chunk.js.map": "/react_aal11/static/js/2.e3cf45c0.chunk.js.map",
+    "static/js/2.a7b3f4da.chunk.js": "/react_aal11/static/js/2.a7b3f4da.chunk.js",
+    "static/js/2.a7b3f4da.chunk.js.map": "/react_aal11/static/js/2.a7b3f4da.chunk.js.map",
     "index.html": "/react_aal11/index.html",
-    "static/css/main.a4dee75c.chunk.css.map": "/react_aal11/static/css/main.a4dee75c.chunk.css.map",
-    "static/js/2.e3cf45c0.chunk.js.LICENSE.txt": "/react_aal11/static/js/2.e3cf45c0.chunk.js.LICENSE.txt",
+    "static/css/main.68b5d74a.chunk.css.map": "/react_aal11/static/css/main.68b5d74a.chunk.css.map",
+    "static/js/2.a7b3f4da.chunk.js.LICENSE.txt": "/react_aal11/static/js/2.a7b3f4da.chunk.js.LICENSE.txt",
+    "static/media/Fork.fa3aa327.svg": "/react_aal11/static/media/Fork.fa3aa327.svg",
+    "static/media/WHS_black.1b31083f.svg": "/react_aal11/static/media/WHS_black.1b31083f.svg",
     "static/media/ItemList.module.css": "/react_aal11/static/media/empty_picture.6b1e8646.png",
-    "static/media/Repository.module.css": "/react_aal11/static/media/star.26d0b2e1.svg",
+    "static/media/github.263c290c.svg": "/react_aal11/static/media/github.263c290c.svg",
     "static/media/instagram.94cb6bee.svg": "/react_aal11/static/media/instagram.94cb6bee.svg",
     "static/media/phone.1ef26426.svg": "/react_aal11/static/media/phone.1ef26426.svg",
     "static/media/InputItem.module.css": "/react_aal11/static/media/plus.1d175ad7.svg",
+    "static/media/star.66a6657c.svg": "/react_aal11/static/media/star.66a6657c.svg",
     "static/media/telegram.da27cc00.svg": "/react_aal11/static/media/telegram.da27cc00.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.15faa180.js",
-    "static/js/2.e3cf45c0.chunk.js",
-    "static/css/main.a4dee75c.chunk.css",
-    "static/js/main.de0df995.chunk.js"
+    "static/js/2.a7b3f4da.chunk.js",
+    "static/css/main.68b5d74a.chunk.css",
+    "static/js/main.d4a89b80.chunk.js"
   ]
 }
