@@ -94,7 +94,7 @@ class About extends React.Component {
                 <div className={styles.about_me}>
                         <h1> {isLoading ? <CircularProgress /> : name} </h1>
                     <h2> {isLoading ? <CircularProgress /> : bio} </h2>
-                    <a href={profile}>{'Profile at Githab'}</a>
+                    <a href={profile}>{'Profile at GitHub'}</a>
                 </div>
             </div>
                 <h2> { isLoading ? <CircularProgress /> : 'My repositories'}</h2>
