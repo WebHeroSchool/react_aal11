@@ -2,6 +2,11 @@
 .item {
     font-weight: bolder;
     font-size: 20px;
+    color: #3b277f;
+    width: 90%;
+    background-color: rgb(0 0 0 / 0%);
+    outline: none;
+    border: none;
 }
 
 .done {
@@ -9,5 +14,44 @@
     text-decoration: line-through;
 }
 
+.edit_mode {
+    outline: #356EFF;
+    border: 1px solid #356EFF;
+    height: 38px;
+    border-radius: 15px;
+    background-color: azure;
+    color: black;
+    padding-left: 5px;
+}
+
+@media (min-width: 320px) and (max-width: 409px) {
+    .item {
+        font-size: 15px;
+    }
+
+    .edit_mode {
+        height: 27px;
+    }
+}
+
+@media (min-width: 410px) and (max-width: 767px) {
+    .item {
+        font-size: 17px;
+    }
+
+    .edit_mode {
+        height: 27px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .item {
+        font-size: 23px;
+    }
+
+    .edit_mode {
+        height: 35px;
+    }
+}
 
 

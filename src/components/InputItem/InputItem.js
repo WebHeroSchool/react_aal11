@@ -1,84 +1,52 @@
 import React from 'react';
 import styles from './InputItem.module.css';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-//import Grid from '@material-ui/core/Grid';
+import classnames from "classnames";
+import PropTypes from "prop-types";
 
 class InputItem extends React.Component {
   state = {
-    inputValue: '',
-    helperText: '',
-    isError: false
+    inputValue: ''
   };
-
-  onChangeInputItem = (event) => {
-
-    this.setState({
-      inputValue: event.target.value,
-      isError: (this.state.isError && this.valueCheck(this.state.inputValue)),
-      helperText: !(this.state.isError && this.valueCheck(this.state.inputValue) ? '' : 'Введите текст')
-    })
-  };
-
-  valueCheck = (value) => {
-    if (value === '') {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  onButtonClick = () => {
-
-    if (!this.valueCheck(this.state.inputValue)) {
-      this.setState({
-          helperText: 'Введите текст',
-          isError: true
-      });
-      
-    } else {
-      this.setState({
-        inputValue: ''
-      });
-
-      this.props.onClickAdd(this.state.inputValue);
-    }
-    
-  }
+  onIconClick = () => {
+          this.setState({
+              inputValue: ''
+          });
+          this.props.onClickAdd(this.state.inputValue);
+    };
 
   render() {
+     const {isEmpty, isExist} = this.props;
+     return (
+        <form className={styles.tasks}>
+                <div className={classnames({
+                    [styles.input_box]: true,
+                    [styles.input_empty]: isEmpty,
+                    [styles.input_exist]: isExist
+                })}>
 
-    return (
-      <div className={styles.field}>
-        <form
-          onSubmit={event => event.preventDefault()}
-          autoComplete="off"
-        >
-          <TextField
-            id="standard-basic"
-            label="Добавить задание"
-            
-            value={this.state.inputValue}
-            onChange={(event) => this.onChangeInputItem(event)}
-            helperText={this.state.helperText}
-            error={this.state.isError}
-            className={styles.text_btn}
-          />
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={() => this.onButtonClick()}
-            className={styles.btn}
-          >Добавить</Button>
-        </form>
-      </div>
-    );
-  }
-}
+                <input
+                     type='text'
+                     placeholder="Добавить задание"
+                     color='primary'
+                     className={classnames({
+                        [styles.input]: true,
+                        [styles.input_empty]: isEmpty,
+                        [styles.input_exist]: isExist
+                      })}
+                      value={this.state.inputValue}
+                      onChange={event => this.setState({inputValue: event.target.value})}
+                    />
+                </div>
+               <div className={styles.addbutton} onClick={this.onIconClick}> </div>
+            </form>);
+        }
+    }
 
-
-
-
+InputItem.propTypes = {
+    onClickAdd: PropTypes.func.isRequired,
+    isEmpty: PropTypes.bool.isRequired,
+    isExist: PropTypes.bool.isRequired
+};
 
 export default InputItem;
-// export default withStyles(styles)(InputItem);
+

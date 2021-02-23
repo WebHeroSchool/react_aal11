@@ -1,8 +1,12 @@
 import React from "react";
 import { Octokit } from '@octokit/rest';
 import styles from "./About.module.css";
-import { LinearProgress } from '@material-ui/core';
-
+//import RepoList from "../RepoList/RepoList";
+import CardContent from '@material-ui/core/CardContent';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import classnames from 'classnames';
+import fork from '../About/Fork.svg';
+import star from '../About/star.svg';
 
 const octokit = new Octokit();
 
@@ -12,8 +16,30 @@ class About extends React.Component {
         isLoading: true,
         repoList: [],
         errorText: 'Возникла ошибка при получении данных',
+       bio: '',
+        name: '',
         isError: false,
-        userData: {}
+        errorValue: '',
+        avatar: '',
+        language: '',
+        updated: '',
+        firstRepo: 0,
+        lastRepo:1
+    };
+
+
+    lastPage = () => {
+        this.setState({
+            firstRepo: this.state.firstRepo - 1,
+            lastRepo: this.state.lastRepo - 1,
+        });
+    };
+
+    nextPage = () => {
+        this.setState({
+            firstRepo: this.state.firstRepo + 1,
+            lastRepo: this.state.lastRepo + 1,
+        });
     };
 
     componentDidMount() {
@@ -22,79 +48,103 @@ class About extends React.Component {
         })
             .then(({ data }) => {
                 this.setState({
-                    repoList: data
+                    repoList: data,
+                    isLoading: false
                 });
             })
-            .catch(() => {
+            .catch(e => {
                 this.setState({
-                    isError: true
-                })
-            })
-            .finally(() => {
-                this.setState({
-                    isLoading: false
+                    isLoading: false,
+                    isError: true,
+                    errorValue: e.name
                 })
             });
 
         octokit.users.getByUsername({
             username: 'AntonovaAL'
         })
-            .then((user) => {
+            .then(({data}) => {
                 this.setState({
-                    userData: user.data
+                   bio: data.bio,
+                  name: data.name,
+                  avatar: data.avatar_url,
+                  profile: data.html_url
                 })
             })
-            .catch(() => {
+            .catch(e => {
                 this.setState({
-                    isError: true
-                })
-            })
-            .finally(() => {
-                this.setState({
-                    isLoading: false
+                    isLoading: false,
+                    isError: true,
+                    errorValue: e.name
                 })
             });
+
     };
+
 
     render() {
-        const { isLoading, repoList, userData, isError, errorText } = this.state;
-
-        if (!isError)
+        const { isLoading, repoList, name, bio, isError, errorValue, avatar, profile, firstRepo, lastRepo } = this.state;
+        const repoListPage = repoList.slice(firstRepo,lastRepo);
+       
             return (
-                <div className={styles.wrapper}>
-                    <div className={styles.userInfo}>
-                        <h1 className={styles.userInfo__header}>
-                            {userData.name} (<a href={userData.html_url} target="__blank">{userData.login}</a>)
-                    </h1>
-                        <p>
-                            <img className={styles.avatar} src={userData.avatar_url} alt='Фото профиля' />
-                            {userData.bio ? userData.bio : 'Антонова Анастасия Леонидовна'}
-                        </p>
-                    </div>
-
-                    <div>
-                        <h1>{isLoading ? <LinearProgress /> : 'Мои репозитории:'}</h1>
-                        {!isLoading && <ol className={styles.repoList}>
-                            {repoList.map(item => (
-                                <li
-                                    className={styles.repoItem}
-                                    key={item.id}
-                                >
-                                    <a href={item.html_url} target="__blank">{item.name}</a>
-                                </li>
-                            ))}
-                        </ol>}
-                    </div>
+                <div> {!isError ?
+                <CardContent>
+                <div className={styles.about_wrap}>
+                    <div className={styles.about_avatar}> {isLoading ? <CircularProgress /> : <img className={styles.avatar_img} src= {avatar}  alt=""></img>} </div>
+                <div className={styles.about_me}>
+                        <h1> {isLoading ? <CircularProgress /> : name} </h1>
+                    <h2> {isLoading ? <CircularProgress /> : bio} </h2>
+                    <a href={profile}>{'Profile at GitHub'}</a>
                 </div>
-            )
-        else
-            return (
-                <h2 className={styles.errorText}>
-                    {errorText}...
-                </h2>
-            )
-    };
-};
-
+            </div>
+                <h2> { isLoading ? <CircularProgress /> : 'My repositories'}</h2>
+                {!isLoading &&<ol className={styles.repo}>{repoListPage.map(repo => (<li key = {repo.id}>
+                        <a href={repo.html_url}>{repo.name}</a>
+                        <div className={styles.repo_info}>
+                            <span className={classnames({
+                                [styles.language]: true,
+                                [styles.html]: repo.language === 'HTML',
+                                [styles.css]: repo.language === 'CSS',
+                                [styles.js]: repo.language === 'JavaScript'
+                            })}>
+                               {repo.language}
+                            </span>
+                            <span className={styles.stargazers}>
+                                <img className={styles.star_img} src={star}  alt="" />
+                                {repo.stargazers_count}
+                            </span>
+                            <span className={styles.fork}>
+                                <img className={styles.fork_img} src={fork}  alt="" />
+                                {repo.forks_count}    
+                            </span>
+                            <span className={styles.updated}>
+                                {'updated '}
+                                {new Date(repo.updated_at).toLocaleString('en-US',{
+                                day: 'numeric',
+                                month: 'short',
+                                year: 'numeric',})}
+                            </span>
+                        </div>
+                    </li>))}
+                </ol>}
+                <div className={styles.pagination}>
+                    <button className={styles.pagination_button}
+                        onClick={this.lastPage}
+                        disabled={firstRepo < 1}
+                    >
+                    Back
+                    </button>
+                    <button className={styles.pagination_button}
+                        onClick={this.nextPage}
+                        disabled={repoList.length < lastRepo}
+                    >
+                    Forward
+                    </button>
+                </div>
+            </CardContent> 
+            : errorValue} </div>       
+        );
+    }    
+}
 
 export default About;

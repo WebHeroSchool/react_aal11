@@ -1,27 +1,145 @@
 
 .wrap {
-	display: grid;
-  grid-template-areas: 'sidebar ... content content';
+  background-color: #FFF0F5;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
   margin: auto;
-  width: 500px;
-  max-width: 500px;
+  width: 80%;
+  max-width: 680px;
   padding: 25px;
+  align-items: stretch;
   border-radius: 9px;
+  border-color:#FFE4C4 #FFDEAD #F5DEB3 #DEB887 ;
+  border-width: 2px;
   box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+
+.title {
+    color: darkblue;
+    text-align: center;
 }
 
 .link {
 	cursor: pointer;
   text-decoration: none;
   color: darkblue;
-  font-weight: bold;  
-}
-
-.board {
-  grid-area: sidebar;
+  font-weight: bold; 
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: .3s;
+  list-style-type: none;
+  outline: none; 
 }
 
 .content {
   grid-area: content;
 }
 
+.board {
+  width: 20%;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  border: transparent;
+  list-style-type: none;
+  outline: none;
+}
+
+
+.logo_img {
+  width: 90px;
+  margin-bottom: 20px;  
+}
+
+@media (max-width: 668px) {
+    .wrap {
+      flex-direction: column;
+      width: 500px
+
+    }
+
+    .menu {
+      flex-direction: row;
+      justify-content: space-around;
+
+
+    }
+   .logo_img {
+     margin-left: 0; 
+     width: 15%;
+    }
+
+    .board {
+      width: 500px;
+      margin: auto;
+      padding: 0;
+      margin-right: 0;
+      border-radius: 0;
+      margin-bottom: 10px;
+      text-align: center;
+
+    }
+
+    .content {
+        width: 500px;
+        margin: auto;
+    }
+
+    .link {
+      padding-left: 10px;
+      display: -webkit-inline-flex;
+      display: inline-flex; 
+    }
+  
+}
+
+@media (max-width: 505px) {
+    .wrap,
+    .board,
+    .content {
+        width: 400px;
+    }
+    
+    .link {
+       padding-left: 10px;
+      display: -webkit-inline-flex;
+      display: inline-flex; 
+      font-size: 10px;
+    }
+}
+
+@media (max-width: 410px) {
+    .wrap,
+    .board,
+    .content {
+        width: 300px;
+    }
+    .link {
+      padding: 2px;
+      display: -webkit-inline-flex;
+      display: inline-flex; 
+      font-size: 10px;
+    }
+}
+@media (max-width: 409px) {
+.logo_img {
+  width: 40px;
+  margin-bottom: 0px;  
+  margin-left: 22px;
+}
+.link {
+  display: flex;
+  margin: 0 -5px;
+  margin-left: none;
+  font-size: 5px;
+
+}
+}

@@ -1,92 +1,141 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import InputItem from '../InputItem/InputItem';
 import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
-import Card from "@material-ui/core/Card";
 import styles from "./Todo.module.css";
 
-const Todo = () => {
+const TaskTodo = () => {
     const initialState = {
-        items: [
-          {
-              value: 'Написать  приложение',
-              isDone: false,
-              id: 1
-          },
-          {
-              value: 'Пройти 1ур по react',
-              isDone: true,
-              id: 2
-          },
-          {
-              value: 'Сходить на трен-ку',
-              isDone: false,
-              id: 3
-          }
-       ],       
-       count: 3
+        items : 
+           JSON.parse(localStorage.getItem('editedList') ||
+                '[{"task": "Погладить кота", "isDone": true, "id": 1, "disabled": true}, {"task": "Покормить кота", "isDone": false, "id": 2, "disabled": true}]'
+            ),
+        count: 2,
+        sortTask: 'Все',
+        isEmpty: false,
+        isExist: false,
+        isEdited: false
     };
 
     const [items, setItems] = useState(initialState.items);
     const [count, setCount] = useState(initialState.count);
+    const [isEmpty, setEmpty] = useState(initialState.isEmpty);
+    const [isExist, setExist] = useState(initialState.isExist);
+    const [sortTask, setSort] = useState(initialState.sortTask);
 
-      useEffect( () => {
-          console.log('update');
-      });
-      useEffect( () => {
-          console.log('mount');
-      }, []);
 
-     const onClickDone = id => {
-        const newItemList = items.map(item => {
-           const newItem = { ...item};
+    const onClickDone = id => {
+       const newItemList = items.map( item => {
+          const newItem = { ...item};
               
            if (item.id === id) {
-                  newItem.isDone = !item.isDone;
+                newItem.isDone = !item.isDone;
             }  
 
-          return newItem;
+           return newItem;
         });
 
        setItems(newItemList);
     };
       
-      const onClickDelete = (id) => {
-         const newItemList = items.filter(item => item.id !==id);
-
+    const onClickDelete = id => {
+        const newItemList = items.filter(item => item.id !== id);
         setItems(newItemList);
-        setCount((count) => count - 1)
-      };
-
-      const onClickAdd = (value) => {
-         const newItemList = [
-            ...items,
+        setCount(count - 1);
+    };
+  const onClickAdd = task => {
+        if (task !== '' && !items.some(item => item.task === task)) {
+            const id = items.length > 0?
+                items[items.length-1].id + 1: 0;
+            const newItems = [
+                ...items,
                 {
-                  value,
-                  isDone: false,
-                  id: count + 1
+                    task,
+                    isDone: false,
+                    id: id,
+                    disabled: true
                 }
-        ];
+            ];
+            setItems(newItems);
+            setCount(count + 1);
+            setEmpty(false);
+            setExist(false)
+        } else {
+            setEmpty(task === '');
+            setExist(task !== '');
+        }
+    };  
 
+ const onClickEdit = id => {
+        const newItemList = items.map( item => {
+            if (item.id === id) {
+                item.disabled = !item.disabled;
+            }
+            return item;
+        });
         setItems(newItemList);
-        setCount((count) => count + 1)
-      }; 
+    };
+
+    const onChangeItem = (id, newTask) => {
+        const newItemList = items.map(item => {
+            const newTaskValue = {...item};
+            if (item.id === id) {
+                newTaskValue.task = newTask;
+            }
+            return newTaskValue;
+        });
+        setItems(newItemList);
+    };
+
+    const onClickSort = sorting => setSort(sorting);
+
+    let addToLocal = JSON.stringify(items);
+    localStorage.setItem('editedList', addToLocal);
+
+    let sortingTasks;
+    switch (sortTask) {
+        case 'Завершенные':
+            sortingTasks = items.filter(item => item.isDone);
+            break;
+        case 'Незавершенные':
+            sortingTasks = items.filter(item => !item.isDone);
+            break;
+        case 'Все':
+            sortingTasks = items;
+            break;
+        default :
+            sortingTasks = items;
+    }
 
 
       return (
-          <div className={styles.wrap}>
-              <Card>
-                  <h1 className={styles.title}>Важные дела:</h1>
-                  <InputItem onClickAdd={onClickAdd} />
-                  <ItemList
-                      items={items}
-                      onClickDone={onClickDone}
-                      onClickDelete={onClickDelete}
-                  />
-                  <Footer count={count}/>
-              </Card>
-          </div>);
-  };
+          <div className={styles.container}>
+            <h1 className={styles.todo_title}>Список задач</h1>
+
+            <div className={styles.tasks_item_list}>
+                <ItemList
+                    task = {items.task}
+                    disabled = {items.disabled}
+                    sort={sortingTasks}
+                    sortValue={sortTask}
+                    onClickDone={onClickDone}
+                    onClickDelete={onClickDelete}
+                    onClickEdit = {onClickEdit}
+                    onChangeItem = {onChangeItem}
+                />
+            </div>
+            <InputItem onClickAdd={onClickAdd} isEmpty={isEmpty} isExist={isExist}/>
+            <div className={styles.footer}>
+                <Footer
+                    items={items}
+                    onClickSort={onClickSort}
+                    sorting={sortTask}
+                />
+            </div>
+
+        </div>)
+};
 
 
-export default Todo;
+
+export default TaskTodo;
