@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react_aal11/static/css/main.68b5d74a.chunk.css",
-    "main.js": "/react_aal11/static/js/main.d4a89b80.chunk.js",
-    "main.js.map": "/react_aal11/static/js/main.d4a89b80.chunk.js.map",
+    "main.css": "/react_aal11/static/css/main.838f5f07.chunk.css",
+    "main.js": "/react_aal11/static/js/main.1061fac3.chunk.js",
+    "main.js.map": "/react_aal11/static/js/main.1061fac3.chunk.js.map",
     "runtime-main.js": "/react_aal11/static/js/runtime-main.15faa180.js",
     "runtime-main.js.map": "/react_aal11/static/js/runtime-main.15faa180.js.map",
     "static/js/2.a7b3f4da.chunk.js": "/react_aal11/static/js/2.a7b3f4da.chunk.js",
     "static/js/2.a7b3f4da.chunk.js.map": "/react_aal11/static/js/2.a7b3f4da.chunk.js.map",
     "index.html": "/react_aal11/index.html",
-    "static/css/main.68b5d74a.chunk.css.map": "/react_aal11/static/css/main.68b5d74a.chunk.css.map",
+    "static/css/main.838f5f07.chunk.css.map": "/react_aal11/static/css/main.838f5f07.chunk.css.map",
     "static/js/2.a7b3f4da.chunk.js.LICENSE.txt": "/react_aal11/static/js/2.a7b3f4da.chunk.js.LICENSE.txt",
     "static/media/Fork.fa3aa327.svg": "/react_aal11/static/media/Fork.fa3aa327.svg",
     "static/media/WHS_black.1b31083f.svg": "/react_aal11/static/media/WHS_black.1b31083f.svg",
@@ -23,7 +23,7 @@
   "entrypoints": [
     "static/js/runtime-main.15faa180.js",
     "static/js/2.a7b3f4da.chunk.js",
-    "static/css/main.68b5d74a.chunk.css",
-    "static/js/main.d4a89b80.chunk.js"
+    "static/css/main.838f5f07.chunk.css",
+    "static/js/main.1061fac3.chunk.js"
   ]
 }
